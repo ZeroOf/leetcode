@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        reverse(digits.begin(), digits.end());
+        int carry = 1;
+        for(int i = 0; i < digits.size(); ++i) {
+            int ret = digits[i] + carry;
+            carry = ret / 10;
+            digits[i] = ret % 10;
+            if (carry == 0) {
+                break;
+            }
+        }
+        if (carry == 1) {
+            digits.push_back(1);
+        }
+        
+        reverse(digits.begin(), digits.end());
+        return digits;
+    }
+};
+//runtime:4 ms
+//memory:8.6 MB

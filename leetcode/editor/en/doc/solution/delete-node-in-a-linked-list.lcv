@@ -1,0 +1,62 @@
+[TOC]
+
+## Solution
+
+---
+
+### Overview
+
+The problem is an extension of [LeetCode 203. Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/).
+
+In the original [LeetCode 203. Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/), we were given the head of the linked list, so we can go to the desired node and connect the previous nodes to the next node.
+
+However, here we are not given access to the head of the linked list, and it makes the problem a bit tricky.
+
+---
+
+### Approach 1: Delete next node instead of current one
+
+#### Intuition
+
+To solve the problem, let's look at the condition carefully,
+
+> It is **guaranteed** that the node to be deleted is **not a tail node** in the list.
+
+There are a few observations here,
+- The conventional deletion approach will fail here since we are not able to get the previous node by iterating from the `head` of the linked list. In fact, we do not have any method to fetch the previous node.
+
+  Without the knowledge of the previous node, it's not possible to delete the current node.
+
+- Notice that we are told the given node is not a tail node. Therefore, we can delete the next node instead of the current node given, and "pretend" that the node we are given is the next node.
+
+Using this intuition, let's understand how to implement this problem.
+
+#### Algorithm
+
+By analyzing the above two key observations, we can derive the following algorithm,
+- Store the next node in a temporary variable.
+- Copy data of the next node to the current node.
+- Change the next pointer of the current node to the next pointer of the next node.
+
+  > Note: Above 3 steps makes sure that your current node becomes same as next node and then you can safely delete next node from the Linked List
+
+*Steps*
+
+1. Initial Linked List
+
+   - ![Initially](https://leetcode.com/problems/delete-node-in-a-linked-list/solution/../Figures/237/Initially.png)
+2. Update current node with next node details
+
+   - ![Updating Node](https://leetcode.com/problems/delete-node-in-a-linked-list/solution/../Figures/237/updateValue.png)
+3. Update current node next pointer with next node next pointer
+   - ![Updating Pointer](https://leetcode.com/problems/delete-node-in-a-linked-list/solution/../Figures/237/updatePointer.png)
+
+#### Implementation
+
+<iframe src="https://leetcode.com/playground/9pF6WBfP/shared" frameBorder="0" width="100%" height="276" name="9pF6WBfP"></iframe>
+
+#### Complexity Analysis
+
+Time Complexity: $O(1)$ since only 1 node needs to be updated and we only traverse one node behind.
+
+Space Complexity: $O(1)$, since we use constant extra space to track the next node.
