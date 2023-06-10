@@ -1,5 +1,0 @@
-project(valid-number)
-enable_testing()
-add_executable(${PROJECT_NAME} test.cpp)
-include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME})
