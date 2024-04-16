@@ -1,15 +1,8 @@
 #include <all.h>
 #include <list>
+
 namespace sum_root_to_leaf_numbers {
 
-struct TreeNode {
-  int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -25,38 +18,26 @@ struct TreeNode {
 class Solution {
  public:
   int sumNumbers(TreeNode *root) {
-    std::list<TreeNode *> numLine;
     int sum = 0;
-    sumNumbers(root, numLine, sum);
+    sumNumbers(root, 0, sum);
     return sum;
   }
+
  private:
-  void sumNumbers(TreeNode *root, std::list<TreeNode *> numLine, int &sum) {
-    if (nullptr == root) {
+
+  void sumNumbers(TreeNode *pNode, int preSum, int &sum) {
+    preSum *= 10;
+    if (nullptr == pNode->left && nullptr == pNode->right) {
+      sum += preSum + pNode->val;
       return;
     }
-    numLine.push_back(root);
-    if (nullptr == root->left && nullptr == root->right) {
-      sum += list2Num(numLine);
-      return;
+    preSum += pNode->val;
+    if (nullptr != pNode->left) {
+      sumNumbers(pNode->left, preSum, sum);
     }
-    if (nullptr != root->left) {
-      sumNumbers(root->left, numLine, sum);
+    if (nullptr != pNode->right) {
+      sumNumbers(pNode->right, preSum, sum);
     }
-    if (nullptr != root->right) {
-      sumNumbers(root->right, numLine, sum);
-    }
-  }
-  int list2Num(std::list<TreeNode *> numLine) {
-    int ret = 0, digit = 1;
-    std::reverse(numLine.begin(), numLine.end());
-    ret += (*numLine.begin())->val;
-    numLine.pop_front();
-    for (auto pNode : numLine) {
-      digit *= 10;
-      ret += pNode->val * digit;
-    }
-    return ret;
   }
 };
 //leetcode submit region end(Prohibit modification and deletion)

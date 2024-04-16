@@ -1,4 +1,5 @@
 #include <all.h>
+
 namespace design_browser_history {
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -26,6 +27,7 @@ class BrowserHistory {
     cur_index_ = cur_index_ + steps < history_.size() ? cur_index_ + steps : history_.size() - 1;
     return history_[cur_index_];
   }
+
  private:
   std::deque<string> history_;
   int cur_index_;

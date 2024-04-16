@@ -11,6 +11,7 @@
 #include <set>
 #include <algorithm>
 #include <queue>
+#include <deque>
 #include <gtest/gtest.h>
 
 using namespace std;
@@ -25,17 +26,17 @@ struct ListNode {
 
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 
-  bool operator==(const ListNode &rhs) const{
+  bool operator==(const ListNode &rhs) const {
     if (val != rhs.val) {
       return false;
     }
     auto pVisitOfThis = next;
     auto pVisitOfRhs = rhs.next;
-    while(nullptr != pVisitOfRhs) {
-      if (nullptr == pVisitOfRhs || pVisitOfRhs->val != pVisitOfThis->val){
+    while (nullptr != pVisitOfRhs) {
+      if (nullptr == pVisitOfRhs || pVisitOfRhs->val != pVisitOfThis->val) {
         return false;
       }
-      pVisitOfRhs = pVisitOfRhs ->next;
+      pVisitOfRhs = pVisitOfRhs->next;
       pVisitOfThis = pVisitOfThis->next;
     }
     if (nullptr != pVisitOfRhs) {
@@ -54,5 +55,16 @@ inline ListNode *CreateList(vector<int> nums) {
   return head;
 }
 
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+
+  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
 
 #endif //LEETCODE__ALL_H_

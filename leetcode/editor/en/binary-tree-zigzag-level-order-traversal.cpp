@@ -1,13 +1,6 @@
 #include <all.h>
+
 namespace binary_tree_zigzag_level_order_traversal {
-struct TreeNode {
-  int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -28,8 +21,8 @@ class Solution {
     if (nullptr == root) {
       return ret;
     }
-    deque<TreeNode *> tmp{root};
-    deque<TreeNode *> tmpNext{};
+    std::deque<TreeNode *> tmp{root};
+    std::deque<TreeNode *> tmpNext{};
     bool left2right = true;
     while (!tmp.empty()) {
       vector<int> layer;

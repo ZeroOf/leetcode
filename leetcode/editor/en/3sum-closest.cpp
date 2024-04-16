@@ -47,6 +47,8 @@ class Solution {
     std::sort(nums.begin(), nums.end());
     int closest = nums[0] + nums[1] + nums[2];
     for (int first = 0; first < nums.size() - 2; ++first) {
+      // after start from first of a group of same numbers, has travel all possible combination of it,
+      // so next time, we start from the next different number
       if (first > 0 && nums[first] == nums[first - 1]) {
         continue;
       }
