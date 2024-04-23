@@ -67,4 +67,16 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+
+class BinaryTreeConstructor {
+ public:
+  BinaryTreeConstructor() {}
+
+  virtual ~BinaryTreeConstructor() {
+  }
+
+ private:
+  vector<TreeNode> nodes_;
+};
+
 #endif //LEETCODE__ALL_H_
