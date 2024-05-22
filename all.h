@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <queue>
 #include <deque>
+#include <stack>
 #include <gtest/gtest.h>
 
 using namespace std;
